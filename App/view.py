@@ -34,6 +34,10 @@ se hace la solicitud al controlador para ejecutar la
 operación solicitada
 """
 
+file = 'bikeshare-ridership-2021-utf8-small.csv'
+
+initialStation = None
+
 def printMenu():
     print("Bienvenido")
     print("1- Cargar información en el catálogo")
@@ -49,7 +53,14 @@ while True:
     inputs = input('Seleccione una opción para continuar\n')
     if int(inputs[0]) == 1:
         print("Cargando información de los archivos ....")
-
+            # cont es el controlador que se usará de acá en adelante
+        cont = controller.init()
+        controller.loadServices(cont, file)
+        numedges = controller.totalConnections(cont)
+        numvertex = controller.totalStops(cont)
+        print('Numero de vertices: ' + str(numvertex))
+        print('Numero de arcos: ' + str(numedges))
+            
     elif int(inputs[0]) == 2:
         pass
 
